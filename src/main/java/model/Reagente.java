@@ -10,7 +10,6 @@ import jakarta.persistence.Id;
 import lombok.Getter;
 
 @Entity
-
 @Getter
 public class Reagente implements Serializable {
 

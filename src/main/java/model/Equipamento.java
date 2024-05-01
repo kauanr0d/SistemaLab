@@ -5,8 +5,10 @@ import java.io.Serializable;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import model.Enums.StatusEquipamento;
+import jakarta.persistence.Entity;
 
+
+import model.Enums.StatusEquipamento;
 public class Equipamento implements Serializable {
 
   @Id
