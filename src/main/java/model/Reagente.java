@@ -10,16 +10,14 @@ import jakarta.persistence.Id;
 import lombok.Getter;
 
 @Entity
+
 @Getter
 public class Reagente implements Serializable {
 
-<<<<<<< HEAD
-  @Id
-=======
+
   private static final long serialVersionUID = 1L;
 
-@Id
->>>>>>> 082304b (Analise)
+  @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer idReagente;
 
