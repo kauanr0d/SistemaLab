@@ -8,8 +8,8 @@ import jakarta.persistence.Id;
 @Entity
 public class Analise implements Serializable {
     @Id
-    @Gen
+
     private Integer id;
 
 }
- 
+  
