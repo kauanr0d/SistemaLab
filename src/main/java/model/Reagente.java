@@ -13,7 +13,13 @@ import lombok.Getter;
 @Getter
 public class Reagente implements Serializable {
 
+<<<<<<< HEAD
   @Id
+=======
+  private static final long serialVersionUID = 1L;
+
+@Id
+>>>>>>> 082304b (Analise)
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer idReagente;
 
