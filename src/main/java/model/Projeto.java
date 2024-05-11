@@ -10,9 +10,9 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(schema = "LabQ")
-public class Curso implements Serializable{
-	private String nome;
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+public class Projeto implements Serializable{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer idProjeto;
+    private String nomeProjeto;
 }

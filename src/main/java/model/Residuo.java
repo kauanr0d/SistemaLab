@@ -7,10 +7,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
+import jakarta.persistence.Table;
 import model.Enums.StatusResiduos;
 
 @Entity
+@Table(schema = "LabQ")
 public class Residuo implements Serializable {
 
   @Id

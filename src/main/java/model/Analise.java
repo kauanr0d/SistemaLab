@@ -9,20 +9,21 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
+import jakarta.persistence.Table;
 import model.Enums.StatusAnalise;
-
-@Entity 
+@Entity
+@Table(schema = "LabQ")
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Analise implements Serializable {
+public class Analise implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    
-    private String nome;
-    private String descricaoAnalise;
-    private LocalDate inicio;
-    private LocalDate fim;
-    private StatusAnalise status;
-    
+    private String nomeAnalise;
+    private String descricao;
+    private LocalDate dataInicio;
+    private LocalDate dataFim;
+    private StatusAnalise statusAnalise;
+
+
 }
   
