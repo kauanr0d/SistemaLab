@@ -1,5 +1,6 @@
 package model;
 
+
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -27,4 +28,5 @@ public class Reagente implements Serializable {
   private String fabricante;
   private Integer lote;
   private CategoriaReagente categoria;
+
 }
