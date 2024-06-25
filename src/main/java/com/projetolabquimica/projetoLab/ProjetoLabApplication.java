@@ -11,7 +11,3 @@ public class ProjetoLabApplication {
 	}
 
 }
-<<<<<<< HEAD
- 
-=======
->>>>>>> origin/kauan
