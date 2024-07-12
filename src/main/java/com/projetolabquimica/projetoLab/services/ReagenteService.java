@@ -18,44 +18,44 @@ import jakarta.persistence.EntityNotFoundException;
 @Service
 public class ReagenteService {
 
-    @Autowired
-    private ReagenteRepository repository;
+	@Autowired
+	private ReagenteRepository repository;
 
-    public List<Reagente> findAll() {
-        return repository.findAll();
-    }
+	public List<Reagente> findAll() {
+		return repository.findAll();
+	}
 
-    public Reagente findById(Long id) {
-        Optional<Reagente> reagente = repository.findById(id);
-        return reagente.orElseThrow(() -> new ResourceNotFoundException(id));
-    }
+	public Reagente findById(Long id) {
+		Optional<Reagente> reagente = repository.findById(id);
+		return reagente.orElseThrow(() -> new ResourceNotFoundException(id));
+	}
 
-    public Reagente insert(Reagente reagente) {
-        return repository.save(reagente);
-    }
+	public Reagente insert(Reagente reagente) {
+		return repository.save(reagente);
+	}
 
-    public void delete(Long id) {
-        try {
-            repository.deleteById(id);
-        } catch (EmptyResultDataAccessException e) {
-            throw new ResourceNotFoundException(id);
-        } catch (DataIntegrityViolationException e) {
-            throw new DatabaseException(e.getMessage());
-        }
-    }
+	public void delete(Long id) {
+		try {
+			repository.deleteById(id);
+		} catch (EmptyResultDataAccessException e) {
+			throw new ResourceNotFoundException(id);
+		} catch (DataIntegrityViolationException e) {
+			throw new DatabaseException(e.getMessage());
+		}
+	}
 
-    public Reagente update(Long id, Reagente reagente) {
-        try {
-            Reagente entity = repository.getReferenceById(id);
-            updateData(entity, reagente);
-            return repository.save(entity);
-        } catch (EntityNotFoundException e) {
-            throw new ResourceNotFoundException(id);
-        }
-    }
+	public Reagente update(Long id, Reagente reagente) {
+		try {
+			Reagente entity = repository.getReferenceById(id);
+			updateData(entity, reagente);
+			return repository.save(entity);
+		} catch (EntityNotFoundException e) {
+			throw new ResourceNotFoundException(id);
+		}
+	}
 
-    private void updateData(Reagente entity, Reagente reagente) {
-        // Atualize os campos conforme necessário, por exemplo:
-        // entity.setName(reagente.getName());
-    }
+	private void updateData(Reagente entity, Reagente reagente) {
+		// Atualize os campos conforme necessário, por exemplo:
+		// entity.setName(reagente.getName());
+	}
 }

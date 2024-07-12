@@ -18,44 +18,44 @@ import jakarta.persistence.EntityNotFoundException;
 @Service
 public class ClienteService {
 
-    @Autowired
-    private ClienteRepository repository;
+	@Autowired
+	private ClienteRepository repository;
 
-    public List<Cliente> findAll() {
-        return repository.findAll();
-    }
+	public List<Cliente> findAll() {
+		return repository.findAll();
+	}
 
-    public Cliente findById(Long id) {
-        Optional<Cliente> cliente = repository.findById(id);
-        return cliente.orElseThrow(() -> new ResourceNotFoundException(id));
-    }
+	public Cliente findById(Long id) {
+		Optional<Cliente> cliente = repository.findById(id);
+		return cliente.orElseThrow(() -> new ResourceNotFoundException(id));
+	}
 
-    public Cliente insert(Cliente cliente) {
-        return repository.save(cliente);
-    }
+	public Cliente insert(Cliente cliente) {
+		return repository.save(cliente);
+	}
 
-    public void delete(Long id) {
-        try {
-            repository.deleteById(id);
-        } catch (EmptyResultDataAccessException e) {
-            throw new ResourceNotFoundException(id);
-        } catch (DataIntegrityViolationException e) {
-            throw new DatabaseException(e.getMessage());
-        }
-    }
+	public void delete(Long id) {
+		try {
+			repository.deleteById(id);
+		} catch (EmptyResultDataAccessException e) {
+			throw new ResourceNotFoundException(id);
+		} catch (DataIntegrityViolationException e) {
+			throw new DatabaseException(e.getMessage());
+		}
+	}
 
-    public Cliente update(Long id, Cliente cliente) {
-        try {
-            Cliente entity = repository.getReferenceById(id);
-            updateData(entity, cliente);
-            return repository.save(entity);
-        } catch (EntityNotFoundException e) {
-            throw new ResourceNotFoundException(id);
-        }
-    }
+	public Cliente update(Long id, Cliente cliente) {
+		try {
+			Cliente entity = repository.getReferenceById(id);
+			updateData(entity, cliente);
+			return repository.save(entity);
+		} catch (EntityNotFoundException e) {
+			throw new ResourceNotFoundException(id);
+		}
+	}
 
-    private void updateData(Cliente entity, Cliente cliente) {
-        // Atualize os campos conforme necessário, por exemplo:
-        // entity.setName(cliente.getName());
-    }
+	private void updateData(Cliente entity, Cliente cliente) {
+		// Atualize os campos conforme necessário, por exemplo:
+		// entity.setName(cliente.getName());
+	}
 }

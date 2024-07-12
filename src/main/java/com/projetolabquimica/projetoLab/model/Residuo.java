@@ -1,8 +1,6 @@
 
 package com.projetolabquimica.projetoLab.model;
 
-
-
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -18,17 +16,18 @@ import jakarta.persistence.Table;
 
 @Entity
 public class Residuo implements Serializable {
-    public Residuo() {}
+	public Residuo() {
+	}
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Integer idResiduo;
-  private String NomeResiduo;
-  private LocalDate dataCadastro;
-  private StatusResiduos status;
-  @ManyToOne
-  @JoinColumn(name="categoria_residuo_id",nullable = false)
-  private CategoriaResiduo categoriaResiduo;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer idResiduo;
+	private String NomeResiduo;
+	private LocalDate dataCadastro;
+	private StatusResiduos status;
+	@ManyToOne
+	@JoinColumn(name = "categoria_residuo_id", nullable = false)
+	private CategoriaResiduo categoriaResiduo;
 }

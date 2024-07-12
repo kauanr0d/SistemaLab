@@ -18,44 +18,44 @@ import jakarta.persistence.EntityNotFoundException;
 @Service
 public class ProjetoService {
 
-    @Autowired
-    private ProjetoRepository repository;
+	@Autowired
+	private ProjetoRepository repository;
 
-    public List<Projeto> findAll() {
-        return repository.findAll();
-    }
+	public List<Projeto> findAll() {
+		return repository.findAll();
+	}
 
-    public Projeto findById(Long id) {
-        Optional<Projeto> projeto = repository.findById(id);
-        return projeto.orElseThrow(() -> new ResourceNotFoundException(id));
-    }
+	public Projeto findById(Long id) {
+		Optional<Projeto> projeto = repository.findById(id);
+		return projeto.orElseThrow(() -> new ResourceNotFoundException(id));
+	}
 
-    public Projeto insert(Projeto projeto) {
-        return repository.save(projeto);
-    }
+	public Projeto insert(Projeto projeto) {
+		return repository.save(projeto);
+	}
 
-    public void delete(Long id) {
-        try {
-            repository.deleteById(id);
-        } catch (EmptyResultDataAccessException e) {
-            throw new ResourceNotFoundException(id);
-        } catch (DataIntegrityViolationException e) {
-            throw new DatabaseException(e.getMessage());
-        }
-    }
+	public void delete(Long id) {
+		try {
+			repository.deleteById(id);
+		} catch (EmptyResultDataAccessException e) {
+			throw new ResourceNotFoundException(id);
+		} catch (DataIntegrityViolationException e) {
+			throw new DatabaseException(e.getMessage());
+		}
+	}
 
-    public Projeto update(Long id, Projeto projeto) {
-        try {
-            Projeto entity = repository.getReferenceById(id);
-            updateData(entity, projeto);
-            return repository.save(entity);
-        } catch (EntityNotFoundException e) {
-            throw new ResourceNotFoundException(id);
-        }
-    }
+	public Projeto update(Long id, Projeto projeto) {
+		try {
+			Projeto entity = repository.getReferenceById(id);
+			updateData(entity, projeto);
+			return repository.save(entity);
+		} catch (EntityNotFoundException e) {
+			throw new ResourceNotFoundException(id);
+		}
+	}
 
-    private void updateData(Projeto entity, Projeto projeto) {
-        // Atualize os campos conforme necessário, por exemplo:
-        // entity.setName(projeto.getName());
-    }
+	private void updateData(Projeto entity, Projeto projeto) {
+		// Atualize os campos conforme necessário, por exemplo:
+		// entity.setName(projeto.getName());
+	}
 }

@@ -13,39 +13,39 @@ import jakarta.persistence.OneToMany;
 
 @Entity
 public class CategoriaReagente implements Serializable {
-    public CategoriaReagente() {}
+	public CategoriaReagente() {
+	}
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long categoriaId;
+	private String nomeCategoria;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long categoriaId;
-    private String nomeCategoria;
+	@OneToMany(mappedBy = "categoria")
+	private List<Reagente> reagentes = new ArrayList<>();
 
-    @OneToMany(mappedBy = "categoria")
-    private List<Reagente> reagentes = new ArrayList<>();
+	// Getters and setters
+	public Long getCategoriaId() {
+		return categoriaId;
+	}
 
-    // Getters and setters
-    public Long getCategoriaId() {
-        return categoriaId;
-    }
+	public void setCategoriaId(Long categoriaId) {
+		this.categoriaId = categoriaId;
+	}
 
-    public void setCategoriaId(Long categoriaId) {
-        this.categoriaId = categoriaId;
-    }
+	public String getNomeCategoria() {
+		return nomeCategoria;
+	}
 
-    public String getNomeCategoria() {
-        return nomeCategoria;
-    }
+	public void setNomeCategoria(String nomeCategoria) {
+		this.nomeCategoria = nomeCategoria;
+	}
 
-    public void setNomeCategoria(String nomeCategoria) {
-        this.nomeCategoria = nomeCategoria;
-    }
+	public List<Reagente> getReagentes() {
+		return reagentes;
+	}
 
-    public List<Reagente> getReagentes() {
-        return reagentes;
-    }
-
-    public void setReagentes(List<Reagente> reagentes) {
-        this.reagentes = reagentes;
-    }
+	public void setReagentes(List<Reagente> reagentes) {
+		this.reagentes = reagentes;
+	}
 }

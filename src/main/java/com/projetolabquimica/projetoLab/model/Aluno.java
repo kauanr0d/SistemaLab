@@ -1,7 +1,5 @@
 package com.projetolabquimica.projetoLab.model;
 
-
-
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Set;
@@ -24,11 +22,11 @@ import jakarta.persistence.PrimaryKeyJoinColumn;
 @PrimaryKeyJoinColumn(name = "id")
 public class Aluno extends Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	public Aluno(Integer id, String nome, String cPF, LocalDate dataNascimento, String telefone, String email) {
 		super(id, nome, cPF, dataNascimento, telefone, email);
 	}
-	
+
 	public Aluno(Integer id, String nome, String cPF, LocalDate dataNascimento, String telefone, String email,
 			String matricula, Curso curso) {
 		super(id, nome, cPF, dataNascimento, telefone, email);
@@ -39,22 +37,17 @@ public class Aluno extends Usuario implements Serializable {
 	public Aluno() {
 		super();
 	}
- 
+
 	@Column(unique = true)
 	private String matricula;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_curso", nullable = false)
 	private Curso curso;
-  
-    @ManyToMany
-	@JoinTable(
-        name = "aluno_analisepesquisa",
-        joinColumns = @JoinColumn(name = "aluno_id"), 
-        inverseJoinColumns = @JoinColumn(name ="analisepesquisa_id" ) 
-    )
-	private Set<AnalisePesquisa> pesquisas;
 
+	@ManyToMany
+	@JoinTable(name = "aluno_analisepesquisa", joinColumns = @JoinColumn(name = "aluno_id"), inverseJoinColumns = @JoinColumn(name = "analisepesquisa_id"))
+	private Set<AnalisePesquisa> pesquisas;
 
 	public String getMatricula() {
 		return matricula;
@@ -71,7 +64,5 @@ public class Aluno extends Usuario implements Serializable {
 	public void setCurso(Curso curso) {
 		this.curso = curso;
 	}
-	
-	
-	
+
 }

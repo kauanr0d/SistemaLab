@@ -19,52 +19,55 @@ import jakarta.persistence.EntityNotFoundException;
 @Service
 public class AlunoService {
 
-    @Autowired
-    private AlunoRepository repository;
+	@Autowired
+	private AlunoRepository repository;
 
-    public List<Aluno> findAll() {
-        return repository.findAll();
-    }
+	public List<Aluno> findAll() {
+		return repository.findAll();
+	}
 
-    public Aluno findById(Long id) {
-        Optional<Aluno> aluno = repository.findById(id);
-        return aluno.orElseThrow(() -> new ResourceNotFoundException(id));
-    }
+	public Aluno findById(Long id) {
+		Optional<Aluno> aluno = repository.findById(id);
+		return aluno.orElseThrow(() -> new ResourceNotFoundException(id));
+	}
 
-    public Aluno insert(Aluno aluno) {
-        return repository.save(aluno);
-    }
-    
-    public Aluno alunoMaisVelho() {
-    	return repository.buscarAlunoMaisVelho();
-    }
-    
-    public void delete(Long id) {
-        try {
-            repository.deleteById(id);
-        } catch (EmptyResultDataAccessException e) {
-            throw new ResourceNotFoundException(id);
-        } catch (DataIntegrityViolationException e) {
-            throw new DatabaseException(e.getMessage());
-        }
-    }
+	public Aluno insert(Aluno aluno) {
+		return repository.save(aluno);
+	}
 
-    public Aluno update(Long id, Aluno aluno) {
-        try {
-            Aluno entity = repository.getReferenceById(id);
-            updateData(entity, aluno);
-            return repository.save(entity);
-        } catch (EntityNotFoundException e) {
-            throw new ResourceNotFoundException(id);
-        }
-    }
+	/*
+	 * public Aluno alunoMaisVelho() { return repository.buscarAlunoMaisVelho(); }
+	 */
 
-    private void updateData(Aluno entity, Aluno aluno) {
-        // Atualize os campos conforme necessário, por exemplo:
-        // entity.setName(aluno.getName());
-    }
-    
-    public Aluno findByMatricula(String matricula) {
-    	return repository.findByMatricula(matricula);
-    }
+	public void delete(Long id) {
+		try {
+			repository.deleteById(id);
+		} catch (EmptyResultDataAccessException e) {
+			throw new ResourceNotFoundException(id);
+		} catch (DataIntegrityViolationException e) {
+			throw new DatabaseException(e.getMessage());
+		}
+	}
+
+	public Aluno update(Long id, Aluno aluno) {
+		try {
+			Aluno entity = repository.getReferenceById(id);
+			updateData(entity, aluno);
+			return repository.save(entity);
+		} catch (EntityNotFoundException e) {
+			throw new ResourceNotFoundException(id);
+		}
+	}
+
+	private void updateData(Aluno entity, Aluno aluno) {
+		entity.setDataNascimento(aluno.getDataNascimento());
+		entity.setTelefone(aluno.getTelefone());
+		entity.setEmail(aluno.getEmail());
+		entity.setNome(aluno.getNome());
+
+	}
+
+	public Aluno findByMatricula(String matricula) {
+		return repository.findByMatricula(matricula);
+	}
 }
