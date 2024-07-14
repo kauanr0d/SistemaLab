@@ -33,7 +33,7 @@ public class EquipamentoController {
     public ResponseEntity<Equipamento> create(@RequestBody Equipamento equipamento){
         Equipamento obj = equipamentoService.insert(equipamento);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().buildAndExpand(obj.getIdEquipamento()).toUri();
-        return ResponseEntity.ok().body(obj);
+        return ResponseEntity.created(uri).body(obj);
     }
 
 

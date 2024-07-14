@@ -24,13 +24,35 @@ public class Equipamento implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idEquipamento;
 	private String nomeEquipamento;
-	private StatusEquipamento status;
+	private String modelo;
+	private String marca;
+	//private StatusEquipamento status;
 
-	public Equipamento(Integer idEquipamento, String nomeEquipamento, StatusEquipamento status) {
+
+	public Equipamento(String nomeEquipamento, String modelo, String marca) {
+		this.nomeEquipamento = nomeEquipamento;
+		this.modelo = modelo;
+		this.marca = marca;
+	}
+
+	public Equipamento(Integer idEquipamento, String nomeEquipamento, String modelo, String marca) {
+		this.idEquipamento = idEquipamento;
+		this.nomeEquipamento = nomeEquipamento;
+		this.modelo = modelo;
+		this.marca = marca;
+	}
+
+	/*public Equipamento(Integer idEquipamento, String nomeEquipamento, StatusEquipamento status) {
 		this.idEquipamento = idEquipamento;
 		this.nomeEquipamento = nomeEquipamento;
 		this.status = status;
-	}
+	}*/
+
+	/*public Equipamento( String nomeEquipamento, StatusEquipamento status) {
+		this.nomeEquipamento = nomeEquipamento;
+		this.status = status;
+	}*/
+
 	public void Equipamento() {
 
 	}
@@ -51,24 +73,40 @@ public class Equipamento implements Serializable {
 		this.nomeEquipamento = nomeEquipamento;
 	}
 
-	public StatusEquipamento getStatus() {
+/*	public StatusEquipamento getStatus() {
 		return status;
 	}
 
 	public void setStatus(StatusEquipamento status) {
 		this.status = status;
-	}
+	}*/
 
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
 		Equipamento that = (Equipamento) o;
-		return Objects.equals(idEquipamento, that.idEquipamento) && Objects.equals(nomeEquipamento, that.nomeEquipamento) && status == that.status;
+		return Objects.equals(idEquipamento, that.idEquipamento) && Objects.equals(nomeEquipamento, that.nomeEquipamento);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(idEquipamento, nomeEquipamento, status);
+		return Objects.hash(idEquipamento, nomeEquipamento);
+	}
+
+	public String getModelo() {
+		return modelo;
+	}
+
+	public void setModelo(String modelo) {
+		this.modelo = modelo;
+	}
+
+	public String getMarca() {
+		return marca;
+	}
+
+	public void setMarca(String marca) {
+		this.marca = marca;
 	}
 }

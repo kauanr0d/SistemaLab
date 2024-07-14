@@ -3,6 +3,8 @@ package com.projetolabquimica.projetoLab.config;
 import java.time.LocalDate;
 import java.util.Arrays;
 
+import com.projetolabquimica.projetoLab.model.Equipamento;
+import com.projetolabquimica.projetoLab.repositories.EquipamentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -12,7 +14,7 @@ import com.projetolabquimica.projetoLab.model.Aluno;
 import com.projetolabquimica.projetoLab.model.Curso;
 import com.projetolabquimica.projetoLab.repositories.AlunoRepository;
 import com.projetolabquimica.projetoLab.repositories.CursoRepository;
-
+import com.projetolabquimica.projetoLab.model.enums.StatusEquipamento;
 @Configuration
 @Profile("dev")
 public class TesteConfig implements CommandLineRunner {
@@ -22,6 +24,9 @@ public class TesteConfig implements CommandLineRunner {
     
     @Autowired
     private CursoRepository cursoRepository;
+
+    @Autowired
+    private EquipamentoRepository equipamentoRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -35,9 +40,16 @@ public class TesteConfig implements CommandLineRunner {
         aluno2.setCurso(curso);
         Curso curso2 = new Curso("Licenciatura em Biologia");
         Curso curso3 = new Curso("Engenharia Elétrica");
-
         cursoRepository.saveAll(Arrays.asList(curso2,curso3));
-        
+
         alunoRepository.saveAll(Arrays.asList(aluno1, aluno2));
+        Equipamento equipamento1 = new Equipamento("cu","ṕinto","merda");
+        Equipamento equipamento2 = new Equipamento("anus","merdaaa","teste");
+
+        // Salvando equipamentos no repositório
+        equipamentoRepository.saveAll(Arrays.asList(equipamento1,equipamento2));
     }
 }
+
+
+
